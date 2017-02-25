@@ -1,6 +1,8 @@
 var captions = [];
 
 var fileSystem = require("fs");
+var elastic = require("elasticsearch");
+
 var fileLocation = process.argv[2];
 var mediaName = process.argv[3];
 
@@ -43,7 +45,23 @@ function makeCaptionFromLines(captionLines) {
 
 function indexCaption(caption, mediaName) {
     caption.media = mediaName;
-    console.log(caption);
+
+    var client = new elastic.Client({
+        host: "localhost:9200"
+    });
+
+    client.index({
+        index: "gif-fodder",
+        type: "caption",
+        body: caption
+    }, function(error, response) {
+        if(error) {
+            console.log(error);
+        }
+        else {
+            console.log(response);
+        }
+    });
 }
 
 function srtStampToMil(stamp) {
