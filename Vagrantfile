@@ -21,8 +21,10 @@ Vagrant.configure("2") do |config|
 
   config.vm.synced_folder "video", "/video", create: true
   config.vm.synced_folder "frames", "/frames", create: true
-  
-  
+
+  config.vm.provision :shell, path: "scripts/bootstrap.sh"
+
+
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
   # `vagrant box outdated`. This is not recommended.
