@@ -15,15 +15,20 @@ Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/xenial64"
 
   #config.vm.provider "virtualbox" do |v|
-  #  v.memory = 8196
-  #  v.cpus = 2
+  #  v.memory = 12294
+  #  v.cpus = 7
   #end
 
   config.vm.synced_folder "video", "/video", create: true
+  config.vm.synced_folder "converters", "/video/converters", create: true
   config.vm.synced_folder "frames", "/frames", create: true
   config.vm.synced_folder "site", "/site", create: true
+  config.vm.synced_folder "captions", "/caption", create: true
+  config.vm.synced_folder "admin-scripts", "/admin-scripts", create: true
+  config.vm.synced_folder "api", "/api", create: true
 
   config.vm.provision :shell, path: "scripts/bootstrap.sh"
+  config.vm.provision :shell, path: "scripts/elastic-search.sh"
 
   config.vm.network "forwarded_port", guest: 8001, host: 8001
 
@@ -36,7 +41,9 @@ Vagrant.configure("2") do |config|
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
-  # config.vm.network "forwarded_port", guest: 80, host: 8080
+
+  #elastic search
+  #config.vm.network "forwarded_port", guest: 9200, host: 9200
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.

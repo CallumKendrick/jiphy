@@ -1,0 +1,41 @@
+<html>
+
+<head>
+    <title>JIPHY TEST</title>
+    <script src='js/gifshot.js'></script>
+    <script src="js/script.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-xs-9">
+                <button class="btn btn-primary" onclick="makeGif('image')">Image GIF</button>
+                <button class="btn btn-primary" onclick="makeGif('webcam')">Webcam GIF</button>
+
+                <input type="text" class="form-control input-lg" placeholder="Search Term - Input a quote from a movie to find a GIF" onfocus="placeholder = ''" onblur="placeholder='Search Term - Input a quote from a movie to find a GIF'" id="search" style="text-align: center;">
+                <input type="text" class="form-control input-lg" placeholder="Caption - Add a caption to your GIF" onfocus="placeholder = ''" onblur="placeholder='Caption - Add a caption to your GIF'" id="text" style="text-align: center;">
+                <input type="text" class="form-control input-lg" placeholder="Height (pixels)" onfocus="placeholder = ''" onblur="placeholder='Height (pixels)'" id="height" style="text-align: center;">
+                <input type="text" class="form-control input-lg" placeholder="Width (pixels)" onfocus="placeholder = ''" onblur="placeholder='Width (pixels)'" id="width" style="text-align: center;">
+
+                <select class="form-control" id="combo" style="text-align: center;">
+                    <option value=2>2 Seconds</option>
+                    <option value=3>3 Seconds</option>
+                    <option value=4>4 Seconds</option>
+                </select>
+            </div>
+            <div class="col-xs-3">
+
+            </div>
+        </div>
+
+
+        <div id="gif">
+        </div>
+    </div>
+
+</body>
+
+</html>
