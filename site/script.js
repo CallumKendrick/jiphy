@@ -21,22 +21,44 @@ function makeImgArray() {
     return imageArray;
 }
 
-function imgGif(height, width) {
+function imgGif() {
     if (typeof height === 'undefined') { var height = 200; }
     if (typeof width === 'undefined') { var width = 200; }
 
-    gifshot.createGIF({'images': makeImgArray()}
-            ,function(obj) {
+    var text = document.getElementById('text').value;
+    var interval = document.getElementById("interval").value;
+    var time = document.getElementById("time").value;
+    var height = document.getElementById("height").value;
+    var width = document.getElementById("width").value;
+
+    if (text == null) {
+        var text = "ERROR";
+    }
+    if (interval == null) {
+        var interval = 0.1;
+    }
+    if (time == null) {
+        var time = 3;
+    }
+    if (height == null) {
+        var height = 300;
+    }
+    if (width == null) {
+        var width = 300;
+    }
+
+    gifshot.createGIF({'images': makeImgArray(), 'text': text, 'interval': interval, 'time': time, 'gifHeight': height, 'gifWidth': width},
+        function(obj) {
             if(!obj.error) {
                 var image = obj.image,
                 animatedImage = document.createElement('img');
                 animatedImage.src = image;
-                animatedImage.style.width = parseInt(width) + "px";
-                animatedImage.style.height = parseInt(height) + "px";
                 document.body.appendChild(animatedImage);
             }
         });
 }
+
+function videoGif() {}
 
 function webcamGif() {
     gifshot.createGIF(function(obj) {
@@ -44,7 +66,7 @@ function webcamGif() {
         var image = obj.image,
         animatedImage = document.createElement('img');
         animatedImage.src = image;
-        document.body.appendChild(animatedImage);
+        document.getElementById("gif").appendChild(animatedImage);
     }
 });
 }
