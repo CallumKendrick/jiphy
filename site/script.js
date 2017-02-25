@@ -32,7 +32,7 @@ function imgGif() {
     var width = document.getElementById("width").value;
 
     if (text == null) {
-        var text = "ERROR";
+        var text = "";
     }
     if (interval == null) {
         var interval = 0.1;
@@ -47,18 +47,23 @@ function imgGif() {
         var width = 300;
     }
 
-    gifshot.createGIF({'images': makeImgArray(), 'text': text, 'interval': interval, 'time': time, 'gifHeight': height, 'gifWidth': width},
+    gifshot.createGIF({'images': makeImgArray(), 'text': text, 'interval': interval, 'time': time, 'gifHeight': height, 'gifWidth': width, 'fontSize': sizeFont(height)},
         function(obj) {
             if(!obj.error) {
                 var image = obj.image,
                 animatedImage = document.createElement('img');
                 animatedImage.src = image;
-                document.body.appendChild(animatedImage);
+                document.getElementById("gif").appendChild(animatedImage);
             }
         });
 }
 
 function videoGif() {}
+
+function sizeFont(h) {
+    var font = parseInt(h/10) + "px";
+    return font;
+}
 
 function webcamGif() {
     gifshot.createGIF(function(obj) {
