@@ -14,8 +14,15 @@ Vagrant.configure("2") do |config|
   # boxes at https://atlas.hashicorp.com/search.
   config.vm.box = "ubuntu/xenial64"
 
+  #config.vm.provider "virtualbox" do |v|
+  #  v.memory = 8196
+  #  v.cpus = 2
+  #end
+
   config.vm.synced_folder "video", "/video", create: true
   config.vm.synced_folder "frames", "/frames", create: true
+  
+  
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
   # `vagrant box outdated`. This is not recommended.
