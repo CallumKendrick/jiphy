@@ -21,15 +21,18 @@ function makeImgArray() {
     return imageArray;
 }
 
-function imgGif() {
+function imgGif(height, width) {
+    if (typeof height === 'undefined') { var height = 200; }
+    if (typeof width === 'undefined') { var width = 200; }
+
     gifshot.createGIF({'images': makeImgArray()}
             ,function(obj) {
             if(!obj.error) {
                 var image = obj.image,
                 animatedImage = document.createElement('img');
                 animatedImage.src = image;
-                animatedImage.style.width = "500px";
-                animatedImage.style.height = "500px";
+                animatedImage.style.width = parseInt(width) + "px";
+                animatedImage.style.height = parseInt(height) + "px";
                 document.body.appendChild(animatedImage);
             }
         });
