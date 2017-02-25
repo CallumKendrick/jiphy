@@ -15,11 +15,12 @@ Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/xenial64"
 
   #config.vm.provider "virtualbox" do |v|
-  #  v.memory = 8196
-  #  v.cpus = 2
+  #  v.memory = 12294
+  #  v.cpus = 7
   #end
 
   config.vm.synced_folder "video", "/video", create: true
+  config.vm.synced_folder "converters", "/video/converters", create: true
   config.vm.synced_folder "frames", "/frames", create: true
   config.vm.synced_folder "site", "/site", create: true
 
