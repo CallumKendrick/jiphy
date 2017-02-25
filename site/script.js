@@ -26,26 +26,29 @@ function makeGif(type){
     if (typeof width === 'undefined') { var width = 200; }
 
     var text = document.getElementById('text').value;
-    var interval = document.getElementById("interval").value;
-    // var frames = document.getElementById("frames").value; - Doesn't work currently
     var height = document.getElementById("height").value;
     var width = document.getElementById("width").value;
-
+    var searchTerm = document.getElementById("search").value;
+    var comboVal = document.getElementById("combo").value;
+    var time;
+    var frames;
     if (text == null) {
-        var text = "";
+        text = "";
     }
-    if (interval == null) {
-        var interval = 0.1;
+    if (!isNaN(height)) {
+        height = 300;
     }
-    if (height == null) {
-        var height = 300;
+    if (!isNaN(width)) {
+        width = 300;
     }
-    if (width == null) {
-        var width = 300;
-    }
+    time = comboVal;
+    frames = comboVal * 10;
+
 
     if (type == "webcam") {
-        gifshot.createGIF({'interval': interval, 'gifHeight': height, 'gifWidth': width, 'text': text, 'fontSize': sizeFont(height, width)},
+        console.log(height, width, time, frames);
+        gifshot.createGIF({'interval': 0.05, 'gifHeight': height, 'gifWidth': width, 'text': text, 'fontSize': sizeFont(height, width),
+        'time': time, 'numFrames': frames, 'keepCameraOn': false},
         function(obj) {
             if(!obj.error) {
                 var image = obj.image,
