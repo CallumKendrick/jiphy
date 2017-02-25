@@ -21,13 +21,13 @@ function makeImgArray() {
     return imageArray;
 }
 
-function imgGif() {
+function makeGif(type){
     if (typeof height === 'undefined') { var height = 200; }
     if (typeof width === 'undefined') { var width = 200; }
 
     var text = document.getElementById('text').value;
     var interval = document.getElementById("interval").value;
-    var time = document.getElementById("time").value;
+    // var frames = document.getElementById("frames").value; - Doesn't work currently
     var height = document.getElementById("height").value;
     var width = document.getElementById("width").value;
 
@@ -37,9 +37,6 @@ function imgGif() {
     if (interval == null) {
         var interval = 0.1;
     }
-    if (time == null) {
-        var time = 3;
-    }
     if (height == null) {
         var height = 300;
     }
@@ -47,33 +44,49 @@ function imgGif() {
         var width = 300;
     }
 
-    gifshot.createGIF({'images': makeImgArray(), 'text': text, 'interval': interval, 'time': time, 'gifHeight': height, 'gifWidth': width, 'fontSize': sizeFont(height)},
+    if (type == "webcam") {
+        gifshot.createGIF({'interval': interval, 'gifHeight': height, 'gifWidth': width, 'text': text, 'fontSize': sizeFont(height, width)},
         function(obj) {
             if(!obj.error) {
                 var image = obj.image,
                 animatedImage = document.createElement('img');
                 animatedImage.src = image;
+                var getGif = document.getElementById("gif");
+                if (getGif.childNodes[0] != null) {
+                    getGif.removeChild(getGif.childNodes[0]);
+                }
                 document.getElementById("gif").appendChild(animatedImage);
             }
         });
-}
-
-function videoGif() {}
-
-function sizeFont(h) {
-    var font = parseInt(h/10) + "px";
-    return font;
-}
-
-function webcamGif() {
-    gifshot.createGIF(function(obj) {
-    if(!obj.error) {
-        var image = obj.image,
-        animatedImage = document.createElement('img');
-        animatedImage.src = image;
-        document.getElementById("gif").appendChild(animatedImage);
     }
-});
+
+    else if (type == "image") {
+        gifshot.createGIF({'images': makeImgArray(), 'text': text, 'interval': interval, 'gifHeight': height, 'gifWidth': width, 'fontSize': sizeFont(height, width)},
+            function(obj) {
+                if(!obj.error) {
+                    var image = obj.image,
+                    animatedImage = document.createElement('img');
+                    animatedImage.src = image;
+                    var getGif = document.getElementById("gif");
+                    if (getGif.childNodes[0] != null) {
+                        getGif.removeChild(getGif.childNodes[0]);
+                    }
+                    document.getElementById("gif").appendChild(animatedImage);
+                }
+            });
+    }
+}
+
+
+function sizeFont(h, w) {
+    if (h < w) {
+        var size = h;
+    }
+    else {
+        var size = w;
+    }
+    var font = parseInt(size/10) + "px";
+    return font;
 }
 
 
