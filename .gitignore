@@ -1,2 +1,4 @@
 video
 frames
+.vagrant 
+*.log
