@@ -22,6 +22,8 @@ Vagrant.configure("2") do |config|
   config.vm.synced_folder "video", "/video", create: true
   config.vm.synced_folder "frames", "/frames", create: true
   config.vm.synced_folder "site", "/site", create: true
+  config.vm.synced_folder "captions", "/caption", create: true
+  config.vm.synced_folder "scripts", "/scripts", create: true
 
   config.vm.provision :shell, path: "scripts/bootstrap.sh"
   config.vm.provision :shell, path: "scripts/elastic-search.sh"
