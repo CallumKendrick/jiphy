@@ -20,6 +20,7 @@
   }],
   "scripts": {
     "preview": "node demo/server/server.js",
+    "site": "node site/server/server.js",
     "build": "gulp",
     "watch": "gulp watch",
     "test": "gulp test"
