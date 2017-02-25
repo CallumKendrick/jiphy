@@ -2,6 +2,7 @@ var captions = [];
 
 var fileSystem = require("fs");
 var fileLocation = process.argv[2];
+var mediaName = process.argv[3];
 
 fileSystem.readFile(fileLocation, "utf-8", function(err, contents) {
     var captionLines = contents.split(/\r?\n/);
@@ -12,7 +13,7 @@ fileSystem.readFile(fileLocation, "utf-8", function(err, contents) {
 
         if(line.trim() == "") {
             var caption = makeCaptionFromLines(currentCaptionLines);
-            indexCaption(caption);
+            indexCaption(caption, mediaName);
 
             currentCaptionLines = [];
         }
@@ -40,7 +41,8 @@ function makeCaptionFromLines(captionLines) {
     return caption;
 }
 
-function indexCaption(caption) {
+function indexCaption(caption, mediaName) {
+    caption.media = mediaName;
     console.log(caption);
 }
 
