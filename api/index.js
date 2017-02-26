@@ -79,8 +79,8 @@ function time_to_frame(media, timestamp){
 
 	});
 
-	frame = "" + Math.floor((meta.duration / timestamp) * meta.framecount) + 1;
-	while(frame.length < 6){
+	frame = "" + (Math.floor((timestamp / meta.duration) * meta.framecount) + 1);
+	while(frame.length < 4){
 		frame = "0" + frame;
 	} 
 
