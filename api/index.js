@@ -6,7 +6,6 @@ var elastic = require("elasticsearch").Client({
 var app = express();
 
 app.get("/search", function(req, res) {
-    var list = [];
     var searchTerm = req.query.search_term;
 
     elastic.search({
@@ -42,8 +41,37 @@ app.get("/search", function(req, res) {
     });
 });
 
+app.get("/components", function(req, res) {
+    var id = req.query.id;
+
+    elastic.get({
+            index: "gif-fodder",
+            type: "caption",
+            id: id
+    },
+    function(error, response) {
+        var hit = response._source;
+
+        var gifComponents = {
+            media: hit.media,
+            caption: hit.caption,
+            captionNumber: hit.number,
+            frames: getFrames(hit.media, hit.start, hit.end)
+        };
+
+        res.send(JSON.stringify(gifComponents));
+    });
+});
+
 function getThumbnail(media, start, end) {
     return "/frames/" + media + "/thumb001.jpg";
+}
+
+function getFrames(media, start, end) {
+    return [
+        "/frames/" + media + "/thumb001.jpg",
+        "/frames/" + media + "/thumb002.jpg"
+    ]
 }
 
 app.listen(3000);
