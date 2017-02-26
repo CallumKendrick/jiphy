@@ -118,7 +118,7 @@ function time_to_frames(media, start, end){
                 while(frame.length < 4){
                         frame = "0" + frame;
                 }
-                frames = frames.concat(frame);
+                frames = frames.concat("frames/" + media + "/thumb" + frame + ".jpg");
                 start++;
         }
         return frames;
