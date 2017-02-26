@@ -17,7 +17,6 @@
         <div class="row">
             <div class="col-xs-8">
                 <input type="text" class="form-control input-lg pad" placeholder="Search Term - Input a quote from a movie to find a GIF" onfocus="placeholder = ''" onblur="placeholder='Search Term - Input a quote from a movie to find a GIF'" id="search" style="text-align: center;">
-                <button class="btn btn-primary" id="gif-search">Search</button>
                 <div class="well">
                     <ul id="search-results" class="search-results">
                     </ul>
@@ -25,8 +24,9 @@
                 <input type="text" class="form-control input-lg pad" placeholder="Caption - Add a caption to your GIF" onfocus="placeholder = ''" onblur="placeholder='Caption - Add a caption to your GIF'" id="text" style="text-align: center;">
             </div>
             <div class="col-xs-4">
-                <button class="btn btn-primary btn-large sidePad pad" onclick="makeGif('image')">Image Search</button>
-                <button class="btn btn-primary btn-large sidePad pad" onclick="makeGif('webcam')">Make Your Own!</button>
+                <button class="btn btn-primary" id="gif-search">Search</button>
+                <button class="btn btn-primary btn-large sidePad pad" onclick="makeGif('image')">Compile Images</button>
+                <button class="btn btn-primary btn-large sidePad pad" onclick="makeGif('webcam')">Webcam GIF</button>
             </div>
         </div>
 
