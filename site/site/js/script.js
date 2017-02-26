@@ -35,10 +35,10 @@ function makeGif(type){
     if (text == null) {
         text = "";
     }
-    if (!isNaN(height)) {
+    if (isNaN(height)) {
         height = 300;
     }
-    if (!isNaN(width)) {
+    if (isNaN(width)) {
         width = 300;
     }
     time = comboVal;
@@ -46,7 +46,7 @@ function makeGif(type){
 
 
     if (type == "webcam") {
-        console.log(height, width, time, frames);
+        console.log("GIF LOG | " + height + "x" + width + "px - Time:" + time + " Frames:" + frames);
         gifshot.createGIF({'interval': 0.05, 'gifHeight': height, 'gifWidth': width, 'text': text, 'fontSize': sizeFont(height, width),
         'time': time, 'numFrames': frames, 'keepCameraOn': false},
         function(obj) {
@@ -64,7 +64,7 @@ function makeGif(type){
     }
 
     else if (type == "image") {
-        gifshot.createGIF({'images': makeImgArray(), 'text': text, 'interval': interval, 'gifHeight': height, 'gifWidth': width, 'fontSize': sizeFont(height, width)},
+        gifshot.createGIF({'images': makeImgArray(), 'text': text, 'interval': 0.1, 'gifHeight': height, 'gifWidth': width, 'fontSize': sizeFont(height, width)},
             function(obj) {
                 if(!obj.error) {
                     var image = obj.image,
