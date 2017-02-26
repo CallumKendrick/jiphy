@@ -2,8 +2,10 @@
 
 <head>
     <title>Jiphy GIF Generator!</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>">
     <script src='js/gifshot.js'></script>
     <script src="js/script.js"></script>
+    <script src="js/search.js"></script>
     <link rel="stylesheet" href="style.css" />
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="css.css" rel="stylesheet"/>
@@ -15,8 +17,9 @@
         <div class="row">
             <div class="col-xs-8">
                 <input type="text" class="form-control input-lg pad" placeholder="Search Term - Input a quote from a movie to find a GIF" onfocus="placeholder = ''" onblur="placeholder='Search Term - Input a quote from a movie to find a GIF'" id="search" style="text-align: center;">
+                <button class="btn btn-primary" id="gif-search">Search</button>
                 <div class="well">
-                    <ul class="search-results">
+                    <ul id="search-results" class="search-results">
                         <li>
                             <img src="../images/thumb3938.jpg"/>
                             <br/>
