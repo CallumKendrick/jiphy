@@ -65,7 +65,7 @@ app.get("/components", function(req, res) {
 });
 
 function time_to_frame(media, timestamp){
-	var = new LineByLineReader('/frames/' + media + 'META');
+	var = new LineByLineReader('/frames/' + media + '/META');
 	
 	var meta = {};
 	var frame;
