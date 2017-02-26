@@ -13,11 +13,14 @@
     "WebRTC",
     "getUserMedia"
   ],
-  "contributors": [{
-    "name": "Chase West"
-  }, {
-    "name": "Greg Franko"
-  }],
+  "contributors": [
+    {
+      "name": "Chase West"
+    },
+    {
+      "name": "Greg Franko"
+    }
+  ],
   "scripts": {
     "preview": "node demo/server/server.js",
     "site": "node site/server/server.js",
@@ -48,5 +51,8 @@
   "engine": {
     "node": ">= 0.8"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "elasticsearch": "^12.1.3"
+  }
 }
