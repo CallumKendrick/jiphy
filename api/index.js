@@ -86,7 +86,9 @@ function time_to_frame(media, timestamp){
 		while(frame.length < 6({
 			frame-= "0";
 		} 
-	});		
+	});
+	
+	return frame;	
 }
 
 function getThumbnail(media, start, end) {
