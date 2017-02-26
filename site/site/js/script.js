@@ -22,8 +22,6 @@ function makeImgArray() {
 }
 
 function makeGif(type){
-    if (typeof height === 'undefined') { var height = 200; }
-    if (typeof width === 'undefined') { var width = 200; }
 
     var text = document.getElementById('text').value;
     var height = document.getElementById("height").value;
@@ -32,15 +30,16 @@ function makeGif(type){
     var comboVal = document.getElementById("combo").value;
     var time;
     var frames;
-    if (text == null) {
+
+    console.log(height, width);
+
+    if (height == '' || height == null || isNaN(height)) { var height = 300; }
+    if (width == '' || width == null || isNaN(width)) { var width = 300; }
+
+    if (text == null || text == "") {
         text = "";
     }
-    if (isNaN(height)) {
-        height = 300;
-    }
-    if (isNaN(width)) {
-        width = 300;
-    }
+
     time = comboVal;
     frames = comboVal * 10;
 
