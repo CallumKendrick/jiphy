@@ -57,7 +57,7 @@ app.get("/components", function(req, res) {
             media: hit.media,
             caption: hit.caption,
             captionNumber: hit.number,
-            frames: getFrames(hit.media, hit.start, hit.end)
+            frames: time_to_frames(hit.media, hit.start, hit.end)
         };
 
         res.send(JSON.stringify(gifComponents));
@@ -85,6 +85,36 @@ function time_to_frame(media, timestamp){
 	} 
 
 	return frame;	
+}
+
+function time_to_frames(media, start, end){
+	var contents = fs.readFileSync('/frames/' + media + '/META', 'utf8');
+
+        console.log(contents)
+
+        var meta = {};
+        var frames = [];
+	
+	 contents.split("\n").forEach(function(line){
+
+                var key_value = line.split(" : ");
+                meta[key_value[0]] = +key_value[1];
+
+        });
+	
+	start = Math.floor((start / meta.duration) * meta.framecount) + 1;
+	end = Math.floor((end / meta.duration) * meta.framecount) + 1;
+	while (start < end) {
+	
+		var frame = "" + start;
+        	while(frame.length < 4){
+                	frame = "0" + frame;
+        	}
+		frames = frames.concat(frame);
+		start++;
+	}
+	return frames;
+
 }
 
 function getThumbnail(media, start, end) {
