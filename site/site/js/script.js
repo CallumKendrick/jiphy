@@ -1,23 +1,4 @@
-function makeImgArray() {
-    var imageArray = [
-    'images/thumb3936.jpg',
-    'images/thumb3937.jpg',
-    'images/thumb3938.jpg',
-    'images/thumb3939.jpg',
-    'images/thumb3940.jpg',
-    'images/thumb3941.jpg',
-    'images/thumb3942.jpg',
-    'images/thumb3943.jpg',
-    'images/thumb3944.jpg',
-    'images/thumb3945.jpg',
-    'images/thumb3946.jpg',
-    'images/thumb3947.jpg',
-    'images/thumb3948.jpg',
-    'images/thumb3949.jpg',
-    'images/thumb3950.jpg',
-    'images/thumb3951.jpg',
-    'images/thumb3952.jpg'
-];
+function makeImgArray(imageArray, caption) {
     return imageArray;
 }
 

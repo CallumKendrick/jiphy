@@ -62,7 +62,7 @@ app.get("/components", function(req, res) {
 
         var gifComponents = {
             media: hit.media,
-            caption: hit.caption,
+            caption: hit.text,
             captionNumber: hit.number,
             frames: time_to_frames(hit.media, hit.start, hit.end)
         };
