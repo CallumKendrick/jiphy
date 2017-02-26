@@ -1,16 +1,27 @@
+var fetchedCap;
+var fetchArr;
+
 function makeImgArray(imageArray, caption) {
-    return imageArray;
-}
+    fetchedCap = caption;
+    fetchedArr = imageArray;
+    console.log("FETCHED Caption: " + fetchedCap + "ImageArr: " + fetchedArr);
+    }
 
 function makeGif(type){
-
-    var text = document.getElementById('text').value;
+    var text;
+    var time;
+    var frames;
+    if (fetchedCap == "") {
+        var text = document.getElementById('text').value;
+    }
+    else {
+        text = fetchedCap;
+    }
+    
     var height = document.getElementById("height").value;
     var width = document.getElementById("width").value;
     var searchTerm = document.getElementById("search").value;
     var comboVal = document.getElementById("combo").value;
-    var time;
-    var frames;
 
     console.log(height, width);
 
@@ -44,7 +55,7 @@ function makeGif(type){
     }
 
     else if (type == "image") {
-        gifshot.createGIF({'images': makeImgArray(), 'text': text, 'interval': 0.1, 'gifHeight': height, 'gifWidth': width, 'fontSize': sizeFont(height, width)},
+        gifshot.createGIF({'images': fetchedArr, 'text': fetchedCap, 'interval': 0.1, 'gifHeight': height, 'gifWidth': width, 'fontSize': sizeFont(height, width)},
             function(obj) {
                 if(!obj.error) {
                     var image = obj.image,
