@@ -6,7 +6,7 @@ $(function() {
     function renderSearchResults() {
         var searchTerm = $("#search").val();
 
-        $.get("http://localhost:3000/search_term", {search_term: searchTerm})
+        $.get("/search", {search_term: searchTerm})
         .done(function(data) {
             console.log(data);
         })
