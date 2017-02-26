@@ -2,7 +2,7 @@ var express = require("express");
 var elastic = require("elasticsearch").Client({
     host: "localhost:9200"
 });
-var LineByLineReader = require('line-by-line')
+var fs = require('fs')
 
 var app = express();
 
@@ -65,34 +65,30 @@ app.get("/components", function(req, res) {
 });
 
 function time_to_frame(media, timestamp){
-	var = new LineByLineReader('/frames/' + media + '/META');
+	var contents = fs.readFileSync('/frames/' + media + '/META', 'utf8');
+	
+	console.log(contents)	
 	
 	var meta = {};
-	var frame;
+	var frame = "nothing";
 	
-	
-	lr.on('error', function (err) {
-		// 'err' contains error object
-	});
+	contents.split("\n").forEach(function(line){	
 
-	lr.on('line', function (line) {
 		var key_value = line.split(" : ");
 		meta[key_value[0]] = +key_value[1];
 
 	});
 
-	lr.on('end', function () {
-		frame = "" + Math.floor((meta.duration / timestamp) * meta.framecount) + 1;
-		while(frame.length < 6({
-			frame-= "0";
-		} 
-	});
-	
+	frame = "" + Math.floor((meta.duration / timestamp) * meta.framecount) + 1;
+	while(frame.length < 6){
+		frame = "0" + frame;
+	} 
+
 	return frame;	
 }
 
 function getThumbnail(media, start, end) {
-    return "/frames/" + media + "/thumb001.jpg";
+    return "/frames/" + media + "/thumb" + time_to_frame(media, start) + ".jpg";
 }
 
 function getFrames(media, start, end) {
