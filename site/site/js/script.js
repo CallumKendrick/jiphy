@@ -55,7 +55,7 @@ function makeGif(type){
     }
 
     else if (type == "image") {
-        gifshot.createGIF({'images': fetchedArr, 'text': fetchedCap, 'interval': 0.1, 'gifHeight': height, 'gifWidth': width, 'fontSize': sizeFont(height, width)},
+        gifshot.createGIF({'images': fetchedArr, 'text': fetchedCap, 'interval': 0.2, 'gifHeight': height, 'gifWidth': width, 'fontSize': sizeFont(height, width)},
             function(obj) {
                 if(!obj.error) {
                     var image = obj.image,
