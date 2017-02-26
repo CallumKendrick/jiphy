@@ -33,12 +33,17 @@ function makeCaptionFromLines(captionLines) {
     var textLines = captionLines.slice(2);
 
     caption.number = numberLine;
+    
+    try{
+    	var delimitedTimestamp = timeStampLine.split(" ");
+    	caption.start = srtStampToMil(delimitedTimestamp[0]);
+    	caption.end = srtStampToMil(delimitedTimestamp[2]);
 
-    var delimitedTimestamp = timeStampLine.split(" ");
-    caption.start = srtStampToMil(delimitedTimestamp[0]);
-    caption.end = srtStampToMil(delimitedTimestamp[2]);
+    	caption.text = textLines.join("\n");
+    }catch(error){
 
-    caption.text = textLines.join("\n");
+    	console.log(error)
+    }
 
     return caption;
 }
