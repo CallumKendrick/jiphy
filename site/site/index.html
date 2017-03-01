@@ -4,7 +4,6 @@
     <title>Jiphy GIF Generator!</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src='js/gifshot.js'></script>
-    <script src="js/script.js"></script>
     <script src="js/search.js"></script>
     <link rel="stylesheet" href="style.css" />
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -27,15 +26,16 @@
                 <button class="btn btn-primary" id="gif-search">Search</button>
                 <button class="btn btn-primary btn-large sidePad pad" onclick="makeGif('image')">Compile Images</button>
                 <button class="btn btn-primary btn-large sidePad pad" onclick="makeGif('webcam')">Webcam GIF</button>
+                <button class="btn btn-primary btn-large sidePad pad" onclick="closePreview();">Stop Webcam</button>
             </div>
         </div>
 
         <div class="row">
             <div class="col-xs-4">
-                <input type="text" class="form-control input-med pad" placeholder="Height (pixels)" onfocus="placeholder = ''" onblur="placeholder='Height (pixels)'" id="height" style="text-align: center;">
+                <input type="text" class="form-control input-med pad" placeholder="Width (pixels)" onfocus="placeholder = ''" onblur="placeholder='Width (pixels)'" id="width" style="text-align: center;">
             </div>
             <div class="col-xs-4">
-                <input type="text" class="form-control input-med pad" placeholder="Width (pixels)" onfocus="placeholder = ''" onblur="placeholder='Width (pixels)'" id="width" style="text-align: center;">
+                <input type="text" class="form-control input-med pad" placeholder="Height (pixels)" onfocus="placeholder = ''" onblur="placeholder='Height (pixels)'" id="height" style="text-align: center;">
             </div>
             <div class="col-xs-4">
                 <select class="form-control pad" id="combo" style="text-align: center;">
@@ -59,22 +59,6 @@
         </div>
     </div>
 
-
-    <script>
-    var video = document.querySelector("#videoElement");
-    navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
-    if (navigator.getUserMedia) {
-        navigator.getUserMedia({video: true}, handleVideo, videoError);
-    }
-    function handleVideo(stream) {
-        video.src = window.URL.createObjectURL(stream);
-    }
-    function videoError(e) {
-        console.log("Video stream denied or unsupported");
-    }
-    </script>
-
-
+    <script src="js/script.js"></script>
 </body>
-
 </html>
