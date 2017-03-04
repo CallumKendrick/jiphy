@@ -1,5 +1,12 @@
+/*
+DEV NOTES
+    Image - Need to change the time parameter
+    Both - Generally need to reduce parameters
+*/
+
+
 var fetchedCap;
-var fetchArr;
+var fetchedArr;
 var video = document.getElementById("videoElement");
 
 function makeImgArray(imageArray, caption) {
@@ -12,15 +19,11 @@ function makeImgArray(imageArray, caption) {
 
 function makeGif(type){
     var text;
-    var time;
-    var frames;
+    var searchTerm;
 
     // Fetch vars from front-end UI
     var height = document.getElementById("height").value;
     var width = document.getElementById("width").value;
-    var searchTerm = document.getElementById("search").value;
-    var comboVal = document.getElementById("combo").value;
-
 
     // Overwrites fetchedCap with text input if there is any, or caption is null
     if (fetchedCap == "" | document.getElementById('text').value != "") {
@@ -30,22 +33,28 @@ function makeGif(type){
         text = fetchedCap;
     }
 
-    // Catch for if height and width = nothing - Set to 300px
-    if (height == '' || height == null || isNaN(height)) { var height = 300; }
-    if (width == '' || width == null || isNaN(width)) { var width = 300; }
+    if (type=="image"){
+        searchTerm = document.getElementById("search").value;
+    }
 
-    // Declare the time as the value of the combo box that dictates seconds
-    time = comboVal;
-    // Frames are recorded every 0.1 of a second
-    frames = comboVal * 10;
+    if (type=="webcam") {
+        var interval = document.getElementById("speedRange").value;
+        var time = document.getElementById("timeRange").value;
+        var frames = time / interval;
+        var fontFamily = document.getElementById("font-family").value;
+    }
+
+    // Catch for if height and width = nothing - Set to 300px
+    if (height == '' || height == null || isNaN(height)) { height = 250; }
+    if (width == '' || width == null || isNaN(width)) { width = 250; }
+
 
 
     if (type == "webcam") {
         // Input log
-        console.log("[GIF LOG] " + height + "x" + width + "px - Time:" + time + " Frames:" + frames + " Caption: " + text);
+        console.log("[GIF LOG] " + height + "x" + width + "px - Frames: " + frames + " Time: " + time + " Caption: " + text);
 
-        gifshot.createGIF({'interval': 0.05, 'gifHeight': height, 'gifWidth': width, 'text': text, 'fontSize': sizeFont(height, width),
-        'time': time, 'numFrames': frames, 'keepCameraOn': false},
+        gifshot.createGIF({'interval': interval, 'gifHeight': height, 'gifWidth': width, 'text': text, 'fontSize': sizeFont(width, height), 'numFrames': frames, "fontFamily": fontFamily},
         function(obj) {
             if(!obj.error) {
                 var image = obj.image,
@@ -67,7 +76,7 @@ function makeGif(type){
         // Input log
         console.log("[GIF LOG] " + height + "x" + width + "px - Time:" + time + " Frames:" + frames + " Caption: " + text);
 
-        gifshot.createGIF({'images': fetchedArr, 'text': text, 'interval': 0.2, 'gifHeight': height, 'gifWidth': width, 'fontSize': sizeFont(height, width)},
+        gifshot.createGIF({'images': fetchedArr, 'text': text, 'interval': 0.2, 'gifHeight': height, 'gifWidth': width, 'fontSize': sizeFont(width, height)},
             function(obj) {
                 if(!obj.error) {
                     var image = obj.image,
@@ -87,7 +96,7 @@ function makeGif(type){
 }
 
 
-function sizeFont(h, w) {
+function sizeFont(w, h) {
     if (h < w) {
         var size = h;
     }
