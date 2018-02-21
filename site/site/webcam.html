@@ -3,8 +3,8 @@
 <head>
     <title>Webcam GIF - Make your own GIFs!</title>
     <script src='js/gifshot.js'></script>
-    <script src="js/script.js"></script>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
@@ -13,19 +13,29 @@
         <div class="row">
             <div class="col-xs-9">
                 <button class="btn btn-primary" onclick="makeGif('webcam')">Webcam GIF</button>
+                <button class="btn btn-primary btn-large sidePad pad" onclick="closePreview();">Stop Webcam</button>
 
                 <input type="text" class="form-control input-lg" placeholder="Caption - Add a caption to your GIF" onfocus="placeholder = ''" onblur="placeholder='Caption - Add a caption to your GIF'" id="text" style="text-align: center;">
-                <input type="text" class="form-control input-lg" placeholder="Height (pixels)" onfocus="placeholder = ''" onblur="placeholder='Height (pixels)'" id="height" style="text-align: center;">
-                <input type="text" class="form-control input-lg" placeholder="Width (pixels)" onfocus="placeholder = ''" onblur="placeholder='Width (pixels)'" id="width" style="text-align: center;">
+                <input type="text" class="form-control input-lg" placeholder="Height (pixels)" onblur="placeholder='Height (pixels)'" id="height" style="text-align: center;">
+                <input type="text" class="form-control input-lg" placeholder="Width (pixels)" onblur="placeholder='Width (pixels)'" id="width" style="text-align: center;">
 
-                <select class="form-control" id="combo" style="text-align: center;">
-                    <option value=2>2 Seconds</option>
-                    <option value=3>3 Seconds</option>
-                    <option value=4>4 Seconds</option>
+                <select class="form control" id="font-family" style="text-align: center;">
+                    <option value="sans-serif">Sans-serif</option>
+                    <option value="Impact">Impact</option>
+                    <option value="Comic Sans MS">Comic Sans</option>
+                    <option value="Arial">Arial</option>
                 </select>
+
+                <input type="range" min="1" max="5" step"0.1" id="timeRange" value="2">
+                <input type="range" min="0.05" max="2" step"0.05" id="speedRange" value="0.1">
+
+
             </div>
             <div class="col-xs-3">
-
+                <div id="container">
+                    <video autoplay="true" id="videoElement">
+                    </video>
+                </div>
             </div>
         </div>
 
@@ -34,6 +44,6 @@
         </div>
     </div>
 
+    <script src="js/script.js"></script>
 </body>
-
 </html>
