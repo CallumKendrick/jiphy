@@ -14,10 +14,12 @@ Vagrant.configure("2") do |config|
   # boxes at https://atlas.hashicorp.com/search.
   config.vm.box = "ubuntu/xenial64"
 
-  #config.vm.provider "virtualbox" do |v|
-  #  v.memory = 12294
-  #  v.cpus = 7
-  #end
+  config.vm.provider "virtualbox" do |v|
+    v.memory = 8196
+    v.cpus = 4
+    v.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root", "1"]
+
+  end
 
   config.vm.synced_folder "video", "/video", create: true
   config.vm.synced_folder "converters", "/video/converters", create: true
@@ -30,7 +32,7 @@ Vagrant.configure("2") do |config|
   config.vm.provision :shell, path: "scripts/bootstrap.sh"
   config.vm.provision :shell, path: "scripts/elastic-search.sh"
 
-  config.vm.network "forwarded_port", guest: 8001, host: 8001
+  config.vm.network "forwarded_port", guest: 8001, host: 80
 
 
   # Disable automatic box update checking. If you disable this, then

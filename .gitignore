@@ -1,4 +1,6 @@
 video
 frames
-.vagrant 
+.vagrant
 *.log
+site/node_modules*
+site/npm-debug.log.*
